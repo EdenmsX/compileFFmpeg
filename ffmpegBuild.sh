@@ -29,8 +29,8 @@ configure_flags="--enable-cross-compile --disable-debug --disable-programs --dis
 #x86_64 i386: 模拟器的CPU架构类型
 archs="arm64 armv7 x86_64 i386"
 
-#6. 指定这个库的编译系统版本(iOS系统下 7.0及以上版本使用)
-targetversion="7.0"
+#6. 指定这个库的编译系统版本(iOS系统下 8.0及以上版本使用)
+targetversion="8.0"
 
 #7. 接收命令后输入参数
 #动态接收命令行输入CPU平台架构类型(输入参数: 编译指定的CPU库)

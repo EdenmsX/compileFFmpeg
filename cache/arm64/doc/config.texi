@@ -1412,7 +1412,7 @@
 @c @set config-h264-qsv-encoder no
 @c @set config-h264-v4l2m2m-encoder no
 @c @set config-h264-vaapi-encoder no
-@c @set config-h264-videotoolbox-encoder no
+@set config-h264-videotoolbox-encoder yes
 @c @set config-nvenc-encoder no
 @c @set config-nvenc-h264-encoder no
 @c @set config-nvenc-hevc-encoder no
@@ -1421,7 +1421,7 @@
 @c @set config-hevc-qsv-encoder no
 @c @set config-hevc-v4l2m2m-encoder no
 @c @set config-hevc-vaapi-encoder no
-@c @set config-hevc-videotoolbox-encoder no
+@set config-hevc-videotoolbox-encoder yes
 @c @set config-libkvazaar-encoder no
 @c @set config-mjpeg-qsv-encoder no
 @c @set config-mjpeg-vaapi-encoder no

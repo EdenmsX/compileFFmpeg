@@ -1,0 +1,14 @@
+prefix=/Users/liulibin/代码/compileFFmpeg/ffmpeg-iOS/armv7
+exec_prefix=${prefix}
+libdir=/Users/liulibin/代码/compileFFmpeg/ffmpeg-iOS/armv7/lib
+includedir=/Users/liulibin/代码/compileFFmpeg/ffmpeg-iOS/armv7/include
+
+Name: libavutil
+Description: FFmpeg utility library
+Version: 56.31.100
+Requires: 
+Requires.private: 
+Conflicts:
+Libs: -L${libdir}  -lavutil -pthread -lm -framework VideoToolbox -framework CoreFoundation -framework CoreMedia -framework CoreVideo
+Libs.private: 
+Cflags: -I${includedir}

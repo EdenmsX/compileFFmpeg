@@ -8,5 +8,5 @@ Description: FFmpeg codec library
 Version: 58.54.100
 Requires:  libswresample >= 3.5.100,  libavutil >= 56.31.100
 Conflicts:
-Libs: -L${libdir} -Wl,-rpath,${libdir} -lavcodec -pthread -liconv -lm -lz -framework AudioToolbox -framework VideoToolbox -framework CoreFoundation -framework CoreMedia -framework CoreVideo
+Libs: -L${libdir} -Wl,-rpath,${libdir} -lavcodec -liconv -lm -lz -framework AudioToolbox -pthread -framework VideoToolbox -framework CoreFoundation -framework CoreMedia -framework CoreVideo
 Cflags: -I${includedir}
