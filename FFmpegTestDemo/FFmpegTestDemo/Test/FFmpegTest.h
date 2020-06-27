@@ -17,6 +17,7 @@
 #import <libavutil/imgutils.h>
 ///视频像素数据格式库
 #import <libswscale/swscale.h>
+#import <libswresample/swresample.h>
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -37,6 +38,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param filePath 需要解码的文件路径(文件格式为: MP4, MOV等格式)(封装格式)
 /// @param outFilePath 完成解码的文件路径(YUV格式)(视频像素数据格式)
 + (void)ffmpegVideoDecode:(NSString *)filePath outFilePath:(NSString *)outFilePath;
+
+
+/// 音频解码
+/// @param filePath 需要解码的音频文件路径
+/// @param outFilePath 完成解码的文件路径
++ (void)ffmpegAudioDecode:(NSString *)filePath outFilePath:(NSString *)outFilePath;
 
 @end
 

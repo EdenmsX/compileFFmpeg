@@ -233,7 +233,7 @@
             }
         }
     }
-    
+    NSLog(@"解码完成, 释放资源");
     //释放内存资源, 关闭解码器
     av_packet_free(&packet);
     fclose(file_yuv420p);
@@ -243,10 +243,178 @@
     avcodec_close(avctx);
     avformat_free_context(avformat_context);
     
+}
+
++ (void)ffmpegAudioDecode:(NSString *)filePath outFilePath:(NSString *)outFilePath {
+    //1. 注册组件(现在已不需要)
+//    av_register_all();
+    //2. 打开封装格式文件(解封装)
+    //封装格式上下文
+    AVFormatContext *avformat_context = avformat_alloc_context();
+    //视频路径
+    const char *url = [filePath UTF8String];
+    
+    /**
+     参数1: 封装格式上下文
+     参数2: 文件路径
+     参数3: 指定输入的格式
+     参数4: 设置默认参数
+     */
+    if(avformat_open_input(&avformat_context, url, NULL, NULL) != 0) {
+        NSLog(@"文件打开失败!");
+        return;
+    }
+    
+    //3. 查找音频流
+    if (avformat_find_stream_info(avformat_context, NULL) < 0) {
+        NSLog(@"查找失败");
+        return;
+    }
+    
+    //4. 查找音频解码器
+    //4.1 查找音频流索引位置
+    int av_audio_stream_index = -1;
+    for (int i = 0; i < avformat_context->nb_streams; i++) {
+        //判断是否是音频流
+        if (avformat_context->streams[i]->codecpar->codec_type == AVMEDIA_TYPE_AUDIO) {
+            av_audio_stream_index = i;
+            break;
+        }
+    }
+    //4.2 根据音频流索引, 获取解码器上下文
+    //获取参数
+    AVCodecParameters *avcodePatameters = avformat_context->streams[av_audio_stream_index]->codecpar;
+    //根据id查找音频解码器
+    AVCodec *avcodec = avcodec_find_decoder(avcodePatameters->codec_id);
+    //创建解码器上下文
+    AVCodecContext *avcodec_context = avcodec_alloc_context3(avcodec);
+    //将参数写入上下文
+    if (avcodec_parameters_to_context(avcodec_context, avcodePatameters) != 0) {
+        NSLog(@"创建音频解码器上下文失败");
+        return;
+    }
+    //5. 打开音频解码器
+    if (avcodec_open2(avcodec_context, avcodec, NULL) != 0) {
+        NSLog(@"打开音频解码器失败");
+        return;
+    }
+    //打印解码器名称
+    NSLog(@"音频解码器名称为: %s", avcodec->name);
+    
+    //6. 循环读取每一帧音频压缩数据
+    
+    //准备一帧音频压缩数据
+    AVPacket *avPacket = (AVPacket *)av_malloc(sizeof(AVPacket));
+    //准备一帧音频采样数据
+    AVFrame *avFrame = av_frame_alloc();
     
     
+    //6.1将数据统一转换为pcm格式(swr_convert())
+    //初始化音频采样数据上下文
+    //6.1.1 开辟一块内存空间
+    SwrContext *swrContext = swr_alloc();
+    //6.1.2 设置默认配置
+    int64_t in_ch_layout = av_get_default_channel_layout(avcodec_context->channels);
+    /**
+     参数1(s): 音频采样数据上下文
+     参数2(out_ch_layout): 输出声道布局(立体声,环绕声等)
+     参数3(out_sample_fmt): 输出采样精度(编码)
+     参数4(out_sample_rate): 输出采样率
+     参数5(in_ch_layout): 输入声道布局
+     参数6(in_sample_fmt): 输入采样精度
+     参数7(in_sample_rate): 输入采样率
+     参数8(log_offset): 日志统计开始位置
+     参数9(log_ctx): 日志上下文
+     */
+    swr_alloc_set_opts(swrContext,
+                       AV_CH_LAYOUT_STEREO,
+                       AV_SAMPLE_FMT_S16,
+                       avcodec_context->sample_rate,
+                       in_ch_layout,
+                       avcodec_context->sample_fmt,
+                       avcodec_context->sample_rate,
+                       0,
+                       NULL);
+    //6.1.3 初始化上下文
+    swr_init(swrContext);
+    //6.1.4 统一输出音频采样数据格式(pcm)
+    int max_audio_size = 44100 * 2;
+    uint8_t *out_buffer = (uint8_t *)av_malloc(max_audio_size);
     
+    //6.2 获取缓冲区实际大小
+    int out_nb_buffer = av_get_channel_layout_nb_channels(AV_CH_LAYOUT_STEREO);
     
+    //6.3.1 打开文件
+    const char *outfile = [outFilePath UTF8String];
+    FILE *file_pcm = fopen(outfile, "wb+");
+    if (file_pcm == NULL) {
+        NSLog(@"输出文件打开失败");
+        return;
+    }
+    
+    int current_index = 0;
+    
+    /** av_read_frame
+     参数1: 封装格式上下文
+     参数2: 一帧音频压缩数据
+     返回值: >=0 表示读取成功, <0 表示失败或者解码完成(读取完毕)
+     */
+    while (av_read_frame(avformat_context, avPacket) >= 0) {
+        //判断这一阵数据是否是音频流
+        if (avPacket->stream_index == av_audio_stream_index) {
+            //是音频流, 开始处理
+            //1. 开始音频解码
+            //1.1 发送数据包  一帧音频压缩数据   acc格式, MP3格式
+            avcodec_send_packet(avcodec_context, avPacket);
+            //1.2 解码数据包 (一帧音频采样数据 -> pcm格式)
+            int ret = avcodec_receive_frame(avcodec_context, avFrame);
+            if (ret == 0) {
+                //解码成功
+                //2. 类型转换(统一转换为pcm格式(swr_convert()))  解码之后的音频采样数据格式有很多中类型,为了保证格式一致, 所以需要类型转换
+                /**
+                 参数1(s): 音频采样数据上下文
+                 参数2(out): 输出音频采样数据
+                 参数3(out_count): 输出音频采样数据大小
+                 参数4(in): 输入音频采样数据
+                 参数5(in_count): 输入音频采样数据大小
+                 */
+                swr_convert(swrContext,
+                            &out_buffer,
+                            max_audio_size,
+                            (const uint8_t **)avFrame->data,
+                            avFrame->nb_samples);
+                //3. 获取缓冲区实际大小
+                /**
+                 参数1(linesize): 行大小
+                 参数2(nb_channels): 输出声道数量(单声道, 双声道)
+                 参数3(nb_samples): 输入大小
+                 参数4(sample_fmt): 输出音频采样数据格式
+                 参数5(align): 字节对齐方式(默认1)
+                 */
+                int buffer_size = av_samples_get_buffer_size(NULL,
+                                                             out_nb_buffer,
+                                                             avFrame->nb_samples,
+                                                             avcodec_context->sample_fmt,
+                                                             1);
+                
+                //4. 写入文件
+                fwrite(out_buffer, 1, buffer_size, file_pcm);
+                current_index++;
+                NSLog(@"当前解码到第 %d 帧", current_index);
+            } else {
+                NSLog(@"第 %d 帧解码失败", current_index);
+            }
+        }
+    }
+    NSLog(@"解码完成, 释放资源");
+    //7. 释放资源, 关闭解码器
+    av_packet_free(&avPacket);
+    fclose(file_pcm);
+    av_frame_free(&avFrame);
+    free(out_buffer);
+    avcodec_close(avcodec_context);
+    avformat_free_context(avformat_context);
+       
 }
 
 @end
