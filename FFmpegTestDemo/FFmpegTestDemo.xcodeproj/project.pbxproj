@@ -32,6 +32,7 @@
 		371ED4DC24A2FB5A00CBE2B5 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 371ED4DB24A2FB5A00CBE2B5 /* libbz2.tbd */; };
 		371ED4E024A2FE7900CBE2B5 /* FFmpegTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 371ED4DF24A2FE7900CBE2B5 /* FFmpegTest.m */; };
 		371ED4E224A32DDF00CBE2B5 /* Test.mov in Resources */ = {isa = PBXBuildFile; fileRef = 371ED4E124A32DDF00CBE2B5 /* Test.mov */; };
+		37A6618D24A6ED33003D6D65 /* Video.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 37A6618C24A6ED33003D6D65 /* Video.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -200,6 +201,7 @@
 		371ED4DE24A2FE7900CBE2B5 /* FFmpegTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFmpegTest.h; sourceTree = "<group>"; };
 		371ED4DF24A2FE7900CBE2B5 /* FFmpegTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFmpegTest.m; sourceTree = "<group>"; };
 		371ED4E124A32DDF00CBE2B5 /* Test.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Test.mov; sourceTree = "<group>"; };
+		37A6618C24A6ED33003D6D65 /* Video.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Video.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -524,6 +526,7 @@
 		371ED4DD24A2FE5D00CBE2B5 /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				37A6618C24A6ED33003D6D65 /* Video.bundle */,
 				371ED4E124A32DDF00CBE2B5 /* Test.mov */,
 				371ED4DE24A2FE7900CBE2B5 /* FFmpegTest.h */,
 				371ED4DF24A2FE7900CBE2B5 /* FFmpegTest.m */,
@@ -637,6 +640,7 @@
 				371ED4E224A32DDF00CBE2B5 /* Test.mov in Resources */,
 				371ED41F24A2F6E100CBE2B5 /* LaunchScreen.storyboard in Resources */,
 				371ED41C24A2F6E100CBE2B5 /* Assets.xcassets in Resources */,
+				37A6618D24A6ED33003D6D65 /* Video.bundle in Resources */,
 				371ED41A24A2F6DF00CBE2B5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
