@@ -32,6 +32,9 @@
 		371ED4DC24A2FB5A00CBE2B5 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 371ED4DB24A2FB5A00CBE2B5 /* libbz2.tbd */; };
 		371ED4E024A2FE7900CBE2B5 /* FFmpegTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 371ED4DF24A2FE7900CBE2B5 /* FFmpegTest.m */; };
 		371ED4E224A32DDF00CBE2B5 /* Test.mov in Resources */ = {isa = PBXBuildFile; fileRef = 371ED4E124A32DDF00CBE2B5 /* Test.mov */; };
+		378C0BBE24A8C4250050C0E7 /* x264.pc in Resources */ = {isa = PBXBuildFile; fileRef = 378C0BBC24A8C4250050C0E7 /* x264.pc */; };
+		378C0BBF24A8C4250050C0E7 /* libx264.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 378C0BBD24A8C4250050C0E7 /* libx264.a */; };
+		378C0BC124A8C4460050C0E7 /* Test.yuv in Resources */ = {isa = PBXBuildFile; fileRef = 378C0BC024A8C4450050C0E7 /* Test.yuv */; };
 		37A6618D24A6ED33003D6D65 /* Video.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 37A6618C24A6ED33003D6D65 /* Video.bundle */; };
 /* End PBXBuildFile section */
 
@@ -201,6 +204,11 @@
 		371ED4DE24A2FE7900CBE2B5 /* FFmpegTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFmpegTest.h; sourceTree = "<group>"; };
 		371ED4DF24A2FE7900CBE2B5 /* FFmpegTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFmpegTest.m; sourceTree = "<group>"; };
 		371ED4E124A32DDF00CBE2B5 /* Test.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Test.mov; sourceTree = "<group>"; };
+		378C0BB824A8C4250050C0E7 /* x264_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x264_config.h; sourceTree = "<group>"; };
+		378C0BB924A8C4250050C0E7 /* x264.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x264.h; sourceTree = "<group>"; };
+		378C0BBC24A8C4250050C0E7 /* x264.pc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = x264.pc; sourceTree = "<group>"; };
+		378C0BBD24A8C4250050C0E7 /* libx264.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libx264.a; sourceTree = "<group>"; };
+		378C0BC024A8C4450050C0E7 /* Test.yuv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Test.yuv; sourceTree = "<group>"; };
 		37A6618C24A6ED33003D6D65 /* Video.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Video.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -211,6 +219,7 @@
 			files = (
 				371ED4DC24A2FB5A00CBE2B5 /* libbz2.tbd in Frameworks */,
 				371ED4DA24A2FB4F00CBE2B5 /* libz.tbd in Frameworks */,
+				378C0BBF24A8C4250050C0E7 /* libx264.a in Frameworks */,
 				371ED4D824A2FB4200CBE2B5 /* libiconv.tbd in Frameworks */,
 				371ED4D624A2FB3100CBE2B5 /* AudioToolbox.framework in Frameworks */,
 				371ED4D424A2FB0F00CBE2B5 /* CoreGraphics.framework in Frameworks */,
@@ -269,6 +278,7 @@
 			children = (
 				371ED4DD24A2FE5D00CBE2B5 /* Test */,
 				371ED44424A2F8B500CBE2B5 /* FFmpeg */,
+				378C0BB624A8C4250050C0E7 /* x264 */,
 				371ED40F24A2F6DF00CBE2B5 /* AppDelegate.h */,
 				371ED41024A2F6DF00CBE2B5 /* AppDelegate.m */,
 				371ED41224A2F6DF00CBE2B5 /* SceneDelegate.h */,
@@ -528,10 +538,46 @@
 			children = (
 				37A6618C24A6ED33003D6D65 /* Video.bundle */,
 				371ED4E124A32DDF00CBE2B5 /* Test.mov */,
+				378C0BC024A8C4450050C0E7 /* Test.yuv */,
 				371ED4DE24A2FE7900CBE2B5 /* FFmpegTest.h */,
 				371ED4DF24A2FE7900CBE2B5 /* FFmpegTest.m */,
 			);
 			path = Test;
+			sourceTree = "<group>";
+		};
+		378C0BB624A8C4250050C0E7 /* x264 */ = {
+			isa = PBXGroup;
+			children = (
+				378C0BB724A8C4250050C0E7 /* include */,
+				378C0BBA24A8C4250050C0E7 /* lib */,
+			);
+			path = x264;
+			sourceTree = "<group>";
+		};
+		378C0BB724A8C4250050C0E7 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				378C0BB824A8C4250050C0E7 /* x264_config.h */,
+				378C0BB924A8C4250050C0E7 /* x264.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		378C0BBA24A8C4250050C0E7 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				378C0BBB24A8C4250050C0E7 /* pkgconfig */,
+				378C0BBD24A8C4250050C0E7 /* libx264.a */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		378C0BBB24A8C4250050C0E7 /* pkgconfig */ = {
+			isa = PBXGroup;
+			children = (
+				378C0BBC24A8C4250050C0E7 /* x264.pc */,
+			);
+			path = pkgconfig;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -637,7 +683,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				378C0BBE24A8C4250050C0E7 /* x264.pc in Resources */,
 				371ED4E224A32DDF00CBE2B5 /* Test.mov in Resources */,
+				378C0BC124A8C4460050C0E7 /* Test.yuv in Resources */,
 				371ED41F24A2F6E100CBE2B5 /* LaunchScreen.storyboard in Resources */,
 				371ED41C24A2F6E100CBE2B5 /* Assets.xcassets in Resources */,
 				37A6618D24A6ED33003D6D65 /* Video.bundle in Resources */,
@@ -841,7 +889,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S7679K347T;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/FFmpegTestDemo/FFmpeg/arm64/include";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/FFmpegTestDemo/FFmpeg/arm64/include",
+					"$(PROJECT_DIR)/FFmpegTestDemo/x264/include",
+				);
 				INFOPLIST_FILE = FFmpegTestDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -851,6 +902,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FFmpegTestDemo/FFmpeg/arm64/lib",
+					"$(PROJECT_DIR)/FFmpegTestDemo/x264/lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Brilliance.FFmpegTestDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -864,7 +916,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S7679K347T;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/FFmpegTestDemo/FFmpeg/arm64/include";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/FFmpegTestDemo/FFmpeg/arm64/include",
+					"$(PROJECT_DIR)/FFmpegTestDemo/x264/include",
+				);
 				INFOPLIST_FILE = FFmpegTestDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -874,6 +929,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FFmpegTestDemo/FFmpeg/arm64/lib",
+					"$(PROJECT_DIR)/FFmpegTestDemo/x264/lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Brilliance.FFmpegTestDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
