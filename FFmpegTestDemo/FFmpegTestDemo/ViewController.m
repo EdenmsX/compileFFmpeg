@@ -20,8 +20,22 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self encodeVideo];
+    [self encodeAudio];
     
+}
+
+- (void)encodeAudio {
+    NSString *inStr= [NSString stringWithFormat:@"Video.bundle/%@",@"Test.pcm"];
+    NSString *inPath=[[[NSBundle mainBundle]resourcePath] stringByAppendingPathComponent:inStr];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         
+                                                         NSUserDomainMask, YES);
+    NSString *path = [paths objectAtIndex:0];
+    NSString *tmpPath = [path stringByAppendingPathComponent:@"temp"];
+    [[NSFileManager defaultManager] createDirectoryAtPath:tmpPath withIntermediateDirectories:YES attributes:nil error:NULL];
+    NSString* outFilePath = [tmpPath stringByAppendingPathComponent:[NSString stringWithFormat:@"Test.aac"]];
+    
+    [FFmpegTest ffmpegAudioEncode:inPath outFilePath:outFilePath];
 }
 
 - (void)encodeVideo {
