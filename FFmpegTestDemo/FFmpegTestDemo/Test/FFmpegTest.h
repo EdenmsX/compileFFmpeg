@@ -45,6 +45,16 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param outFilePath 完成解码的文件路径
 + (void)ffmpegAudioDecode:(NSString *)filePath outFilePath:(NSString *)outFilePath;
 
+/// 视频编码
+/// @param filePath 需要编码的文件路径(文件格式为: MP4, MOV等格式)(封装格式)
+/// @param outFilePath 完成编码的文件路径(YUV格式)(视频像素数据格式)
++ (void)ffmpegVideoEncode:(NSString*)filePath outFilePath:(NSString*)outFilePath;
+
+
+/// 音频编码
+/// @param filePath 需要编码的音频文件路径
+/// @param outFilePath 完成编码的文件路径
++ (void)ffmpegAudioEncode:(NSString *)filePath outFilePath:(NSString *)outFilePath;
 @end
 
 NS_ASSUME_NONNULL_END

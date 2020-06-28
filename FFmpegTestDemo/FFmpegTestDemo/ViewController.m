@@ -20,8 +20,20 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self decodeAudio];
+    [self encodeVideo];
     
+}
+
+- (void)encodeVideo {
+    NSString* inPath = [[NSBundle mainBundle] pathForResource:@"Test" ofType:@"yuv"];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         
+                                                         NSUserDomainMask, YES);
+    NSString *path = [paths objectAtIndex:0];
+    NSString *tmpPath = [path stringByAppendingPathComponent:@"temp"];
+    [[NSFileManager defaultManager] createDirectoryAtPath:tmpPath withIntermediateDirectories:YES attributes:nil error:NULL];
+    NSString* outFilePath = [tmpPath stringByAppendingPathComponent:[NSString stringWithFormat:@"Test.h264"]];
+    [FFmpegTest ffmpegVideoEncode:inPath outFilePath:outFilePath];
 }
 
 - (void)decodeAudio {
