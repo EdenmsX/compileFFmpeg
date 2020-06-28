@@ -35,6 +35,9 @@
 		378C0BBE24A8C4250050C0E7 /* x264.pc in Resources */ = {isa = PBXBuildFile; fileRef = 378C0BBC24A8C4250050C0E7 /* x264.pc */; };
 		378C0BBF24A8C4250050C0E7 /* libx264.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 378C0BBD24A8C4250050C0E7 /* libx264.a */; };
 		378C0BC124A8C4460050C0E7 /* Test.yuv in Resources */ = {isa = PBXBuildFile; fileRef = 378C0BC024A8C4450050C0E7 /* Test.yuv */; };
+		378C0BD024A8E53C0050C0E7 /* fdk-aac.pc in Resources */ = {isa = PBXBuildFile; fileRef = 378C0BCD24A8E53C0050C0E7 /* fdk-aac.pc */; };
+		378C0BD124A8E53C0050C0E7 /* libfdk-aac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 378C0BCE24A8E53C0050C0E7 /* libfdk-aac.a */; };
+		378C0BD224A8E53C0050C0E7 /* libfdk-aac.la in Resources */ = {isa = PBXBuildFile; fileRef = 378C0BCF24A8E53C0050C0E7 /* libfdk-aac.la */; };
 		37A6618D24A6ED33003D6D65 /* Video.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 37A6618C24A6ED33003D6D65 /* Video.bundle */; };
 /* End PBXBuildFile section */
 
@@ -209,6 +212,14 @@
 		378C0BBC24A8C4250050C0E7 /* x264.pc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = x264.pc; sourceTree = "<group>"; };
 		378C0BBD24A8C4250050C0E7 /* libx264.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libx264.a; sourceTree = "<group>"; };
 		378C0BC024A8C4450050C0E7 /* Test.yuv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Test.yuv; sourceTree = "<group>"; };
+		378C0BC624A8E53C0050C0E7 /* aacdecoder_lib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aacdecoder_lib.h; sourceTree = "<group>"; };
+		378C0BC724A8E53C0050C0E7 /* machine_type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = machine_type.h; sourceTree = "<group>"; };
+		378C0BC824A8E53C0050C0E7 /* aacenc_lib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aacenc_lib.h; sourceTree = "<group>"; };
+		378C0BC924A8E53C0050C0E7 /* genericStds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = genericStds.h; sourceTree = "<group>"; };
+		378C0BCA24A8E53C0050C0E7 /* FDK_audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDK_audio.h; sourceTree = "<group>"; };
+		378C0BCD24A8E53C0050C0E7 /* fdk-aac.pc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "fdk-aac.pc"; sourceTree = "<group>"; };
+		378C0BCE24A8E53C0050C0E7 /* libfdk-aac.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libfdk-aac.a"; sourceTree = "<group>"; };
+		378C0BCF24A8E53C0050C0E7 /* libfdk-aac.la */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "libfdk-aac.la"; sourceTree = "<group>"; };
 		37A6618C24A6ED33003D6D65 /* Video.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Video.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -226,6 +237,7 @@
 				371ED4D224A2FAFC00CBE2B5 /* VideoToolbox.framework in Frameworks */,
 				371ED4D024A2FAE200CBE2B5 /* CoreMedia.framework in Frameworks */,
 				371ED4CB24A2F9B900CBE2B5 /* libavdevice.a in Frameworks */,
+				378C0BD124A8E53C0050C0E7 /* libfdk-aac.a in Frameworks */,
 				371ED4CD24A2F9B900CBE2B5 /* libswscale.a in Frameworks */,
 				371ED4C824A2F9B900CBE2B5 /* libavfilter.a in Frameworks */,
 				371ED4C724A2F9B800CBE2B5 /* libavutil.a in Frameworks */,
@@ -279,6 +291,7 @@
 				371ED4DD24A2FE5D00CBE2B5 /* Test */,
 				371ED44424A2F8B500CBE2B5 /* FFmpeg */,
 				378C0BB624A8C4250050C0E7 /* x264 */,
+				378C0BC224A8E53C0050C0E7 /* fdkaac */,
 				371ED40F24A2F6DF00CBE2B5 /* AppDelegate.h */,
 				371ED41024A2F6DF00CBE2B5 /* AppDelegate.m */,
 				371ED41224A2F6DF00CBE2B5 /* SceneDelegate.h */,
@@ -580,6 +593,61 @@
 			path = pkgconfig;
 			sourceTree = "<group>";
 		};
+		378C0BC224A8E53C0050C0E7 /* fdkaac */ = {
+			isa = PBXGroup;
+			children = (
+				378C0BC324A8E53C0050C0E7 /* arm64 */,
+			);
+			path = fdkaac;
+			sourceTree = "<group>";
+		};
+		378C0BC324A8E53C0050C0E7 /* arm64 */ = {
+			isa = PBXGroup;
+			children = (
+				378C0BC424A8E53C0050C0E7 /* include */,
+				378C0BCB24A8E53C0050C0E7 /* lib */,
+			);
+			path = arm64;
+			sourceTree = "<group>";
+		};
+		378C0BC424A8E53C0050C0E7 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				378C0BC524A8E53C0050C0E7 /* fdk-aac */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		378C0BC524A8E53C0050C0E7 /* fdk-aac */ = {
+			isa = PBXGroup;
+			children = (
+				378C0BC624A8E53C0050C0E7 /* aacdecoder_lib.h */,
+				378C0BC724A8E53C0050C0E7 /* machine_type.h */,
+				378C0BC824A8E53C0050C0E7 /* aacenc_lib.h */,
+				378C0BC924A8E53C0050C0E7 /* genericStds.h */,
+				378C0BCA24A8E53C0050C0E7 /* FDK_audio.h */,
+			);
+			path = "fdk-aac";
+			sourceTree = "<group>";
+		};
+		378C0BCB24A8E53C0050C0E7 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				378C0BCC24A8E53C0050C0E7 /* pkgconfig */,
+				378C0BCE24A8E53C0050C0E7 /* libfdk-aac.a */,
+				378C0BCF24A8E53C0050C0E7 /* libfdk-aac.la */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		378C0BCC24A8E53C0050C0E7 /* pkgconfig */ = {
+			isa = PBXGroup;
+			children = (
+				378C0BCD24A8E53C0050C0E7 /* fdk-aac.pc */,
+			);
+			path = pkgconfig;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -685,6 +753,8 @@
 			files = (
 				378C0BBE24A8C4250050C0E7 /* x264.pc in Resources */,
 				371ED4E224A32DDF00CBE2B5 /* Test.mov in Resources */,
+				378C0BD024A8E53C0050C0E7 /* fdk-aac.pc in Resources */,
+				378C0BD224A8E53C0050C0E7 /* libfdk-aac.la in Resources */,
 				378C0BC124A8C4460050C0E7 /* Test.yuv in Resources */,
 				371ED41F24A2F6E100CBE2B5 /* LaunchScreen.storyboard in Resources */,
 				371ED41C24A2F6E100CBE2B5 /* Assets.xcassets in Resources */,
@@ -892,6 +962,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/FFmpegTestDemo/FFmpeg/arm64/include",
 					"$(PROJECT_DIR)/FFmpegTestDemo/x264/include",
+					"$(PROJECT_DIR)/FFmpegTestDemo/fdkaac/arm64/include",
 				);
 				INFOPLIST_FILE = FFmpegTestDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -903,6 +974,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/FFmpegTestDemo/FFmpeg/arm64/lib",
 					"$(PROJECT_DIR)/FFmpegTestDemo/x264/lib",
+					"$(PROJECT_DIR)/FFmpegTestDemo/fdkaac/arm64/lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Brilliance.FFmpegTestDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -919,6 +991,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/FFmpegTestDemo/FFmpeg/arm64/include",
 					"$(PROJECT_DIR)/FFmpegTestDemo/x264/include",
+					"$(PROJECT_DIR)/FFmpegTestDemo/fdkaac/arm64/include",
 				);
 				INFOPLIST_FILE = FFmpegTestDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -930,6 +1003,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/FFmpegTestDemo/FFmpeg/arm64/lib",
 					"$(PROJECT_DIR)/FFmpegTestDemo/x264/lib",
+					"$(PROJECT_DIR)/FFmpegTestDemo/fdkaac/arm64/lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Brilliance.FFmpegTestDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
